@@ -38,23 +38,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CardDeck.hpp">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="Card.hpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rules.hpp">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.hpp">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gambler.hpp">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="CardDeck.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dealer.hpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gambler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rules.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

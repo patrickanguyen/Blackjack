@@ -12,6 +12,10 @@ void initial_menu(unsigned int& bet, Gambler& p1)
 
 void initialize_game(CardDeck& cd, Gambler& p1, Dealer& p2)
 {
+	cd.reset();
+	p1.reset();
+	p2.reset();
+	
 	p2.initial_play(cd);
 	p1.draw(cd);
 	p1.draw(cd);
@@ -100,7 +104,6 @@ void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standin
 			// Double bet amount and draw one card
 			bet *= 2;
 			p1.draw(cd);
-			p1.list_cards();
 			is_standing = true;
 			break;
 		}
@@ -215,7 +218,7 @@ void results(unsigned int bet, CardDeck& cd, Gambler& p1, Dealer& p2)
 	case LOSE:
 	{
 		p1.set_money(p1.get_money() - bet);
-		std::cout << "You lost!" << std::endl;
+		std::cout << "You lose!" << std::endl;
 		std::cout << "Money: " << p1.get_money() << std::endl;
 		break;
 	}
@@ -224,6 +227,38 @@ void results(unsigned int bet, CardDeck& cd, Gambler& p1, Dealer& p2)
 		std::cout << "It's a tie!" << std::endl;
 		std::cout << "Money: " << p1.get_money() << std::endl;
 		break;
+	}
+	}
+}
+
+void end_menu()
+{
+	std::cout << "Menu:" << std::endl;
+	std::cout << "1 - Continue" << std::endl;
+	std::cout << "2 - End Game" << std::endl;
+}
+
+void end_select(bool& keep_playing)
+{
+	int option;
+	std::cin >> option;
+	std::cout << std::endl;
+	switch (option)
+	{
+	case 1: // Continue
+	{
+		break;
+	}
+	case 2: // End game
+	{
+		keep_playing = false;
+		break;
+	}
+	default:
+	{
+		std::cout << "Invalid option" << std::endl;
+		end_menu();
+		end_select(keep_playing);
 	}
 	}
 }
