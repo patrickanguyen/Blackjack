@@ -181,7 +181,7 @@ result compare(Gambler& p1, Dealer& p2, CardDeck& cd)
 		return LOSE;
 	}
 	// If gambler got blackjack, automatic win for gambler
-	else if (p1.sum() == 21)
+	else if (p1.sum() == 21 && p1.num_cards() == 2)
 	{
 		std::cout << "Blackjack!" << std::endl;
 		return WIN;

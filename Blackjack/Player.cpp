@@ -59,6 +59,10 @@ Card Player::get_card(int index)
 	return drawn_cards[index];
 }
 
+int Player::num_cards()
+{
+	return drawn_cards.size();
+}
 
 // DEBUG METHOD
 void Player::ADD_CERTAIN_CARD(Card c)

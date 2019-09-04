@@ -25,8 +25,18 @@ int main()
 		
 		initial_display(p1, p2);
 		// Hit, Double Down, Stand
-		first_menu();
-		first_select(bet, cd, p1, is_standing);
+
+		// If blackjack, end game
+		if (p1.sum() == 21 && p1.num_cards() == 2)
+		{
+			is_standing = true;
+		}
+		else
+		{
+			first_menu();
+			first_select(bet, cd, p1, is_standing);
+		}
+		
 
 		// Look until stand or card total is greater than 21
 		while (!is_standing && p1.sum() < 21)

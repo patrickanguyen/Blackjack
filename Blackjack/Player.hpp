@@ -18,6 +18,7 @@ public:
 	unsigned int sum();
 	void ADD_CERTAIN_CARD(Card c);
 	Card get_card(int index);
+	int num_cards();
 };
 
 #endif
