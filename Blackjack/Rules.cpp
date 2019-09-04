@@ -160,9 +160,31 @@ void select(CardDeck& cd, Gambler& p1, bool& is_standing)
 	}
 }
 
-void compare(Gambler& p1, Dealer& p2, CardDeck& cd, unsigned int& bet)
-{
 
+// Compare the hands of the dealer and gambler
+// True = Gambler won / False = Dealer won
+result compare(Gambler& p1, Dealer& p2, CardDeck& cd)
+{
+	// If gambler busted, automatic win for dealer
+	if (p1.sum() > 21)
+		return LOSE;
+	// If gambler got blackjack, automatic win for gambler
+	else if (p1.sum() == 21)
+		return WIN;
+	else
+	{
+		// Dealer must draw to at least 17
+		p2.play(cd);
+		
+		// If dealer busted, gambler wins
+		if (p2.sum() > 21)
+			return WIN;
+		// If same value, return tie
+		else if (p1.sum() == p2.sum())
+			return TIE;
+		else
+			return (p1.sum() > p2.sum()) ? WIN : LOSE;
+	}
 }
 
 

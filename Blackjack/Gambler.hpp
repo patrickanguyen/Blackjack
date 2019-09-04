@@ -6,11 +6,11 @@
 class Gambler : public Player
 {
 private:
-	int my_money;
+	unsigned int my_money;
 public:
-	Gambler(int money);
-	int get_money() const;
-	void set_money(int new_money);
+	Gambler(unsigned int money);
+	unsigned int get_money() const;
+	void set_money(unsigned int new_money);
 };
 
 #endif

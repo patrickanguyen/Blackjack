@@ -33,7 +33,30 @@ int main()
 	}
 
 	// Check to see who won hand
-	
+	switch (compare(p1, p2, cd))
+	{
+	case WIN:
+	{
+		p1.set_money(p1.get_money() + bet);
+		std::cout << "You won!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	case LOSE: 
+	{
+		p1.set_money(p1.get_money() - bet);
+		std::cout << "You won!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	case TIE:
+	{
+		std::cout << "It's a tie!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	}
+
 	return 0;
 }
 
