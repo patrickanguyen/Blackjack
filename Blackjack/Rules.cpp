@@ -79,7 +79,7 @@ void first_menu()
 }
 
 // Hit, Double-Down, Stand
-void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1)
+void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standing)
 {
 	int option;
 	std::cin >> option;
@@ -98,25 +98,27 @@ void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1)
 			// Double bet amount and draw one card
 			bet *= 2;
 			p1.draw(cd);
+			is_standing = true;
 			break;
 		}
 		else 
 		{
 			std::cout << "Cannot double down" << std::endl;
 			first_menu();
-			first_select(bet, cd, p1);
+			first_select(bet, cd, p1, is_standing);
 			break;
 		}
 	}
 	case 3: // Stand
 	{
+		is_standing = true;
 		break;
 	}
 	default: // Invalid option
 	{
 		std::cout << "Invalid option" << std::endl;
 		first_menu();
-		first_select(bet, cd, p1);
+		first_select(bet, cd, p1, is_standing);
 		break;
 	}
 
@@ -131,7 +133,7 @@ void menu()
 
 }
 
-void select(CardDeck& cd, Gambler& p1)
+void select(CardDeck& cd, Gambler& p1, bool& is_standing)
 {
 	int option;
 	std::cin >> option;
@@ -144,19 +146,23 @@ void select(CardDeck& cd, Gambler& p1)
 	}
 	case 2: // Stand
 	{
+		is_standing = true;
 		break;
 	}
 	default: // Invalid option
 	{
 		std::cout << "Invalid option" << std::endl;
 		menu();
-		select(cd, p1);
+		select(cd, p1, is_standing);
 		break;
 	}
 
 	}
 }
 
+void compare(Gambler& p1, Dealer& p2, CardDeck& cd, unsigned int& bet)
+{
 
+}
 
 

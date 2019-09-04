@@ -13,12 +13,27 @@ int main()
 	Gambler p1(1000);
 	Dealer p2;
 	unsigned int bet = 50;
+	bool is_standing = false;
 
+	// Change bet, Deal
 	initial_menu(bet, p1);
 	initial_select(cd, p1, p2, bet);
 
 	initial_display(p1, p2);
 
+	// Hit, Double Down, Stand
+	first_menu();
+	first_select(bet, cd, p1, is_standing);
+
+	// Hit or Stand
+	while (!is_standing && p1.sum() < 21)
+	{
+		menu();
+		select(cd, p1, is_standing);
+	}
+
+	// Check to see who won hand
+	
 	return 0;
 }
 
