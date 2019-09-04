@@ -19,10 +19,7 @@ void initialize_game(CardDeck& cd, Gambler& p1, Dealer& p2)
 
 void initial_display(Gambler& p1, Dealer& p2)
 {
-	std::cout << "Player's Cards:" << std::endl;
 	p1.list_cards();
-	std::cout << "Current total: " << p1.sum() << std::endl;
-	std::cout << "\nDealer's Cards: " << std::endl;
 	p2.list_first_card();
 
 }
@@ -31,6 +28,7 @@ void initial_select(CardDeck& cd, Gambler& p1, Dealer& p2, unsigned int& bet)
 {
 	int option;
 	std::cin >> option;
+	std::cout << std::endl;
 	switch (option)
 	{
 	case 1: // Start game
@@ -55,6 +53,7 @@ void initial_select(CardDeck& cd, Gambler& p1, Dealer& p2, unsigned int& bet)
 				std::cout << "Invalid bet amount" << std::endl;
 		}
 		// Start menu again
+		std::cout << std::endl;
 		initial_menu(bet, p1);
 		initial_select(cd, p1, p2, bet);
 		break;
@@ -72,6 +71,7 @@ void initial_select(CardDeck& cd, Gambler& p1, Dealer& p2, unsigned int& bet)
 
 void first_menu()
 {
+	std::cout << "Menu:" << std::endl;
 	std::cout << "1 - Hit " << std::endl;
 	std::cout << "2 - Double down" << std::endl;
 	std::cout << "3 - Stand" << std::endl;
@@ -83,11 +83,13 @@ void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standin
 {
 	int option;
 	std::cin >> option;
+	std::cout << std::endl;
 	switch (option)
 	{
 	case 1: // Hit
 	{
 		p1.draw(cd);
+		p1.list_cards();
 		break;
 	}
 	case 2: // Double Down
@@ -98,6 +100,7 @@ void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standin
 			// Double bet amount and draw one card
 			bet *= 2;
 			p1.draw(cd);
+			p1.list_cards();
 			is_standing = true;
 			break;
 		}
@@ -128,6 +131,7 @@ void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standin
 // Hit or Stand
 void menu()
 {
+	std::cout << "Menu:" << std::endl;
 	std::cout << "1 - Hit " << std::endl;
 	std::cout << "2 - Stand" << std::endl;
 
@@ -137,11 +141,13 @@ void select(CardDeck& cd, Gambler& p1, bool& is_standing)
 {
 	int option;
 	std::cin >> option;
+	std::cout << std::endl;
 	switch (option)
 	{
 	case 1: // Hit
 	{
 		p1.draw(cd);
+		p1.list_cards();
 		break;
 	}
 	case 2: // Stand
@@ -167,15 +173,23 @@ result compare(Gambler& p1, Dealer& p2, CardDeck& cd)
 {
 	// If gambler busted, automatic win for dealer
 	if (p1.sum() > 21)
+	{
+		std::cout << "Bust!" << std::endl;
 		return LOSE;
+	}
 	// If gambler got blackjack, automatic win for gambler
 	else if (p1.sum() == 21)
+	{
+		std::cout << "Blackjack!" << std::endl;
 		return WIN;
+	}
 	else
 	{
 		// Dealer must draw to at least 17
 		p2.play(cd);
-		
+		p1.list_cards();
+		p2.list_cards();
+
 		// If dealer busted, gambler wins
 		if (p2.sum() > 21)
 			return WIN;
@@ -183,8 +197,33 @@ result compare(Gambler& p1, Dealer& p2, CardDeck& cd)
 		else if (p1.sum() == p2.sum())
 			return TIE;
 		else
-			return (p1.sum() > p2.sum()) ? WIN : LOSE;
+			return ( p1.sum() > p2.sum() ) ? WIN : LOSE;
 	}
 }
 
-
+void results(unsigned int bet, CardDeck& cd, Gambler& p1, Dealer& p2)
+{
+	switch (compare(p1, p2, cd))
+	{
+	case WIN:
+	{
+		p1.set_money(p1.get_money() + bet);
+		std::cout << "You won!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	case LOSE:
+	{
+		p1.set_money(p1.get_money() - bet);
+		std::cout << "You lost!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	case TIE:
+	{
+		std::cout << "It's a tie!" << std::endl;
+		std::cout << "Money: " << p1.get_money() << std::endl;
+		break;
+	}
+	}
+}

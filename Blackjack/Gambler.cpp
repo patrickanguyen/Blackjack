@@ -13,3 +13,10 @@ void Gambler::set_money(unsigned int new_money)
 {
 	my_money = new_money;
 }
+
+void Gambler::list_cards()
+{
+	std::cout << "Your Cards:" << std::endl;
+	Player::list_cards();
+	std::cout << "Card Total: " << sum()  << "\n" << std::endl;
+}

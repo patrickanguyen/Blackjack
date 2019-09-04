@@ -15,5 +15,6 @@ void select(CardDeck& cd, Gambler& p1, bool& is_standing);
 void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1, bool& is_standing);
 void first_menu();
 result compare(Gambler& p1, Dealer& p2, CardDeck& cd);
+void results(unsigned int bet, CardDeck& cd, Gambler& p1, Dealer& p2);
 
 #endif

@@ -19,5 +19,15 @@ void Dealer::initial_play(CardDeck& cd)
 
 void Dealer::list_first_card()
 {
+	std::cout << "Dealer's Cards:" << std::endl;
 	std::cout << get_card(0) << std::endl;
+	std::cout << "Card Total: " << get_card(0).get_value() 
+		<< "\n" << std::endl;
+}
+
+void Dealer::list_cards()
+{
+	std::cout << "Dealer's Cards: " << std::endl;
+	Player::list_cards();
+	std::cout << "Card Total: " << sum() << "\n" << std::endl;
 }
