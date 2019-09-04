@@ -1,65 +1,6 @@
 #include "Rules.hpp"
 #include <iostream>
 
-// Hit or Stand
-void menu()
-{
-	std::cout << "1 - Hit " << std::endl;
-	std::cout << "2 - Stand" << std::endl;
-
-}
-
-void first_menu()
-{
-	std::cout << "1 - Hit " << std::endl;
-	std::cout << "2 - Double down" << std::endl;
-	std::cout << "3 - Stand" << std::endl;
-
-}
-
-
-// Hit, Double-Down, Stand
-void first_select(unsigned int& bet, Gambler& p1)
-{
-	int option;
-	std::cin >> option;
-	switch (option)
-	{
-	case 1: // Hit
-	{
-		
-	}
-	case 2: // Double Down
-	{
-		if ( (2 * bet) <= p1.get_money() )
-		{
-			bet *= 2;
-			p1.draw()
-		}
-		else // Cannot bet more money than actual have
-		{
-			std::cout << "Cannot double down" << std::endl;
-			first_menu();
-			first_select(bet, p1);
-			break;
-		}
-	}
-	case 3: // Stand
-	{
-		break;
-	}
-	default: // Invalid option
-	{
-		std::cout << "Invalid option" << std::endl;
-		first_menu();
-		first_select(bet, p1);
-		break;
-	}
-	}
-}
-
-
-
 void initial_menu(unsigned int& bet, Gambler& p1)
 {
 	std::cout << "Money: " << p1.get_money() << std::endl;
@@ -125,7 +66,97 @@ void initial_select(CardDeck& cd, Gambler& p1, Dealer& p2, unsigned int& bet)
 		initial_select(cd, p1, p2, bet);
 		break;
 	}
-		
+
 	}
 }
+
+void first_menu()
+{
+	std::cout << "1 - Hit " << std::endl;
+	std::cout << "2 - Double down" << std::endl;
+	std::cout << "3 - Stand" << std::endl;
+
+}
+
+// Hit, Double-Down, Stand
+void first_select(unsigned int& bet, CardDeck& cd, Gambler& p1)
+{
+	int option;
+	std::cin >> option;
+	switch (option)
+	{
+	case 1: // Hit
+	{
+		p1.draw(cd);
+		break;
+	}
+	case 2: // Double Down
+	{
+		// Cannot bet more money than actually have
+		if ( (2 * bet) <= p1.get_money() ) 
+		{
+			// Double bet amount and draw one card
+			bet *= 2;
+			p1.draw(cd);
+			break;
+		}
+		else 
+		{
+			std::cout << "Cannot double down" << std::endl;
+			first_menu();
+			first_select(bet, cd, p1);
+			break;
+		}
+	}
+	case 3: // Stand
+	{
+		break;
+	}
+	default: // Invalid option
+	{
+		std::cout << "Invalid option" << std::endl;
+		first_menu();
+		first_select(bet, cd, p1);
+		break;
+	}
+
+	}
+}
+
+// Hit or Stand
+void menu()
+{
+	std::cout << "1 - Hit " << std::endl;
+	std::cout << "2 - Stand" << std::endl;
+
+}
+
+void select(CardDeck& cd, Gambler& p1)
+{
+	int option;
+	std::cin >> option;
+	switch (option)
+	{
+	case 1: // Hit
+	{
+		p1.draw(cd);
+		break;
+	}
+	case 2: // Stand
+	{
+		break;
+	}
+	default: // Invalid option
+	{
+		std::cout << "Invalid option" << std::endl;
+		menu();
+		select(cd, p1);
+		break;
+	}
+
+	}
+}
+
+
+
 
