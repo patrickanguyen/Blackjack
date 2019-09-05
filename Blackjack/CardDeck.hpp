@@ -11,7 +11,7 @@ class CardDeck
 	public:
 		CardDeck();
 		Card draw_card();
-		int num_of_cards();
+		int num_of_cards() const;
 		void reset();
 
 };

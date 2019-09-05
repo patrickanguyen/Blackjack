@@ -11,7 +11,7 @@ public:
 	Gambler(unsigned int money);
 	unsigned int get_money() const;
 	void set_money(unsigned int new_money);
-	void list_cards();
+	void list_cards() const;
 };
 
 #endif

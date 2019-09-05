@@ -38,7 +38,7 @@ Card CardDeck::draw_card()
 }
 
 
-int CardDeck::num_of_cards()
+int CardDeck::num_of_cards() const
 {
 	// Returns number of cards in deck
 	return cards.size();

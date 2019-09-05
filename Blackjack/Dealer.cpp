@@ -17,7 +17,7 @@ void Dealer::initial_play(CardDeck& cd)
 	draw(cd);
 }
 
-void Dealer::list_first_card()
+void Dealer::list_first_card() const
 {
 	std::cout << "Dealer's Cards:" << std::endl;
 	std::cout << get_card(0) << std::endl;
@@ -25,7 +25,7 @@ void Dealer::list_first_card()
 		<< "\n" << std::endl;
 }
 
-void Dealer::list_cards()
+void Dealer::list_cards() const
 {
 	std::cout << "Dealer's Cards: " << std::endl;
 	Player::list_cards();

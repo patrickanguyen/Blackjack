@@ -8,8 +8,8 @@ class Dealer : public Player
 public:
 	void play(CardDeck& cd);
 	void initial_play(CardDeck& cd);
-	void list_first_card();
-	void list_cards();
+	void list_first_card() const;
+	void list_cards() const;
 };
 
 #endif

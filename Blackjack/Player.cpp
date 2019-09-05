@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 
-int Player::num_of_aces()
+int Player::num_of_aces() const
 {
 	int sum = 0;
 	for (Card c : drawn_cards)
@@ -23,7 +23,7 @@ void Player::reset()
 	drawn_cards.clear();
 }
 
-void Player::list_cards()
+void Player::list_cards() const
 {
 	for (Card card : drawn_cards)
 	{
@@ -32,7 +32,7 @@ void Player::list_cards()
 	std::cout << std::endl;
 }
 
-unsigned int Player::sum()
+unsigned int Player::sum() const
 {
 	int sum = 0;
 	// If there isn't an ace in the deck, count sum normally
@@ -54,12 +54,12 @@ unsigned int Player::sum()
 }
 
 
-Card Player::get_card(int index)
+Card Player::get_card(int index) const
 {
 	return drawn_cards[index];
 }
 
-int Player::num_cards()
+int Player::num_cards() const
 {
 	return drawn_cards.size();
 }

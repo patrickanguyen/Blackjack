@@ -1,10 +1,10 @@
 #include <iostream>
-#include <vector>
 
 #include "CardDeck.hpp"
 #include "Gambler.hpp"
 #include "Rules.hpp"
 #include "Dealer.hpp"
+
 
 int main()
 {
@@ -17,6 +17,7 @@ int main()
 
 	do
 	{
+		reset(bet, cd, p1, p2);
 		bool is_standing = false;
 
 		// Change bet, Deal

@@ -1,7 +1,7 @@
 #include "Rules.hpp"
 #include <iostream>
 
-void initial_menu(unsigned int& bet, Gambler& p1)
+void initial_menu(unsigned int bet, const Gambler& p1)
 {
 	std::cout << "Money: " << p1.get_money() << std::endl;
 	std::cout << "Current bet: " << bet << std::endl;
@@ -10,18 +10,22 @@ void initial_menu(unsigned int& bet, Gambler& p1)
 	std::cout << "2 - Change bet" << std::endl;
 }
 
-void initialize_game(CardDeck& cd, Gambler& p1, Dealer& p2)
+void reset(unsigned int& bet, CardDeck& cd, Gambler& p1, Dealer& p2)
 {
+	bet = (bet > p1.get_money()) ? p1.get_money() : bet;
 	cd.reset();
 	p1.reset();
 	p2.reset();
-	
+}
+
+void initialize_game(CardDeck& cd, Gambler& p1, Dealer& p2)
+{
 	p2.initial_play(cd);
 	p1.draw(cd);
 	p1.draw(cd);
 }
 
-void initial_display(Gambler& p1, Dealer& p2)
+void initial_display(const Gambler& p1, const Dealer& p2)
 {
 	p1.list_cards();
 	p2.list_first_card();
@@ -172,7 +176,7 @@ void select(CardDeck& cd, Gambler& p1, bool& is_standing)
 
 // Compare the hands of the dealer and gambler
 // True = Gambler won / False = Dealer won
-result compare(Gambler& p1, Dealer& p2, CardDeck& cd)
+result compare(const Gambler& p1, Dealer& p2, CardDeck& cd)
 {
 	// If gambler busted, automatic win for dealer
 	if (p1.sum() > 21)
